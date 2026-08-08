@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": { "major": 3, "minor": 24, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "msvc-release",
+      "displayName": "Visual Studio 2022 Release",
+      "generator": "Visual Studio 17 2022",
+      "binaryDir": "${sourceDir}/build/msvc-release",
+      "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-windows-rel",
+        "VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/custom-triplets",
+        "VCPKG_APPLOCAL_DEPS": "OFF",
+        "LIFTER_BUILD_TESTS": "ON",
+        "LIFTER_WARNINGS_AS_ERRORS": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    { "name": "msvc-release", "configurePreset": "msvc-release", "configuration": "Release" }
+  ],
+  "testPresets": [
+    {
+      "name": "msvc-release",
+      "configurePreset": "msvc-release",
+      "configuration": "Release",
+      "output": { "outputOnFailure": true }
+    }
+  ]
+}
